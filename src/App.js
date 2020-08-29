@@ -1,10 +1,26 @@
-import React from 'react';
+import React from "react";
+import Header from "./components/Header";
+import Photos from "./pages/Photos";
+import Cart from "./pages/Cart";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
+        <Header />
+        <h1>Home Page</h1>
+      </div>
 
-    </div>
+      <Switch>
+        <Route exact path="/">
+          <Photos />
+        </Route>
+        <Route path="/cart">
+          <Cart />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
