@@ -4,6 +4,7 @@ const Context = React.createContext();
 function ContextProvider({ children }) {
   const [photos, setPhotos] = useState([]);
   const [cart, setCart] = useState([]);
+  const [cartMessage, setCartMessage] = useState("Place Order");
 
   const url =
     "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json";
@@ -34,9 +35,27 @@ function ContextProvider({ children }) {
     );
   };
 
+  const placeOrder = () => {
+    setCartMessage("Ordering...");
+    setTimeout(() => {
+      setCart([]);
+      setCartMessage("Order Successful");
+      console.log("order placed");
+      setTimeout(() => setCartMessage("Place Order"), 3000);
+    }, 3000);
+  };
+
   return (
     <Context.Provider
-      value={{ photos, toggleFavorite, cart, addToCart, removeFromCart }}
+      value={{
+        photos,
+        toggleFavorite,
+        cart,
+        addToCart,
+        removeFromCart,
+        placeOrder,
+        cartMessage,
+      }}
     >
       {children}
     </Context.Provider>
